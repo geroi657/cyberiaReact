@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import {Link, useLocation} from "react-router-dom";
-import JSON from "../Routes.json";
+import JSON from "../../app/Routes.json";
 import { useEffect, useState } from "react";
-import Container from "./Container.jsx";
+import Container from "./Container.js";
 
 const BreadcrumbsContainer = styled.div`
     padding: 10.25rem 0 8rem 0;

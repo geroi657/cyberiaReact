@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 
-import { Theme } from "./ThemeProvider.jsx";
+import { Theme } from "../shared/ui/ThemeProvider.js";
 
 const Container = styled(motion.div)`
     position: fixed;
@@ -222,7 +222,7 @@ export default function Header(){
                     transition={{duration: 0.4}}>
             <StyledHeader>
                 <StyledLink to={"/"}>
-                    <StyledIMG to="/" src="./src/assets/Cyberia.svg" alt={"Cyberia"}/>
+                    <StyledIMG to={"/"} src="./src/assets/Cyberia.svg" alt={"Cyberia"}/>
                 </StyledLink>
                 <StyledNav>
                     <Link to="/agency">

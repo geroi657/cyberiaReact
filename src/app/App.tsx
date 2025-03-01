@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Root from "./Components/Root.jsx";
-import Cases from "./Components/Cases.jsx";
-import NoMatch from "./Components/NoMatch.jsx";
-import Placeholder from "./Components/Placeholder.jsx";
+import Root from "./Root.js";
+import Cases from "../pages/Cases/ui/Cases.js";
+import NoMatch from "../pages/NoMatch/ui/NoMatch.js";
+import Placeholder from "../pages/Placeholder/ui/Placeholder.js";
 
 export default function App() {
   return (

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {useContext, useState} from "react";
-import Container from "./Container.jsx";
-import { Theme } from "./ThemeProvider.jsx";
+import Container from "../../shared/ui/Container";
+import { Theme } from "../../shared/ui/ThemeProvider";
 
 const FormBody = styled.form`
     display: flex;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Container from "./Container.jsx";
-import {Link, NavLink} from "react-router-dom";
+import Container from "../shared/ui/Container.js";
+import { Link } from "react-router-dom";
 
 const StyledFooter = styled.footer`
     width: 100%;
