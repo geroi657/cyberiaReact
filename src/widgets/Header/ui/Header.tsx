@@ -1,192 +1,25 @@
-import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../shared/redux/store";
 
-import { Theme } from "../shared/ui/ThemeProvider.js";
-
-const Container = styled(motion.div)`
-    position: fixed;
-    width: 100%;
-    z-index: 10;
-
-    @media(max-width: 414px){
-        background-color: #20212C;
-    }
-`;
-
-const StyledHeader = styled.header`
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    max-width: 1330px;
-    margin: 0 auto;
-    column-gap: 15%;
-    padding: 0 2rem 2rem 2rem;
-
-    @media(max-width: 414px){
-        background-color: #20212C;
-        padding-bottom: 1.5rem;
-        padding-top: 1.5rem;
-    };
-`;
-
-const StyledIMG = styled.img`
-    position: relative;
-    width: 131px;
-    height: 28px;
-    cursor: pointer;
-
-    @media(max-width: 414px){
-        width: 93px;
-        height: 20px;
-    }
-`;
-
-const BurgerMenuContainer = styled(motion.div)`
-    display: none;
-    width: 100%;
-    height: 100dvh;
-    padding-top: 1.125rem;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    background-color: #24252F;
-
-    @media(max-width: 1100px){
-        display: block;
-    }
-`;
-
-const StyledNav = styled.nav`
-    display: flex;
-    align-items: center;
-    column-gap: 7.5%;
-
-    @media(max-width: 1100px){
-        display: none;
-    }
-`;
-
-const StyledNavLink = styled.div`
-    font-size: 1.125rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    color: white;
-    font-weight: 400;
-    transition: 0.125s all;
-    border-radius: 7px;
-
-    &:hover {
-        background-color: #00000025;
-    }
-`;
-
-const BurgerOpen = styled.img`
-    display: none;
-    width: 48px;
-    height: 48px;
-    position: absolute;
-    right: 2rem;
-    padding: 0.5rem;
-    transition: 0.02s;
-
-    &:active{
-        background-color: #00000020;
-    }
-
-    @media(max-width: 1100px){
-        display: block;
-    }
-`;
-
-const BurgerCloseContainer = styled.div`
-    position: relative;
-    display: flex;
-    justify-content: right;
-    width: 100%;
-    padding-bottom: 0.5rem;
-`;
-
-const BurgerClose = styled(BurgerOpen)`
-    position: relative;
-    right: 2rem;
-`;
-
-const BurgerNav = styled.nav`
-    display: flex;
-    flex-direction: column;
-`;
-
-const StyledBurgerNavLink = styled(StyledNavLink)`
-    width: 100%;
-    padding: 0.875rem 2rem 0.875rem 2rem;
-    transition: 0.02s;
-    
-    &:hover{
-        background-color: transparent;
-    }
-    
-    &:active{
-        background-color: #00000020;
-    }
-`;
-
-const BurgerNavContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    row-gap: 1.75rem;
-`;
-
-const BurgerSeparatorContainer = styled.div`
-    width: 100%;
-    padding: 0 2rem 0 2rem;
-    height: 2px;
-`;
-
-const BurgerSeparator = styled.div`
-    width: 100%;
-    height: 2px;
-    background-color: #2B2D3A;
-`;
-
-const StyledP = styled.p`
-    padding: 0.875rem 0 0 2rem;
-    font-size: 1.125rem;
-    color: #9AA8BA;
-`;
-
-const InfoContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    row-gap: 1.5rem;
-    padding-right: 2rem;
-    padding-left: 2rem;
-`;
-
-const InfoPiece = styled.a`
-    font-size: 1rem;
-    transition: 0.2s all;
-    color: #afb2d6;
-
-    &:active {
-        color: #9AA8BA;
-    }
-`;
-
-const StyledLink = styled(Link)`
-    width: 131px;
-    height: 28px;
-
-    @media(max-width: 414px){
-        width: 93px;
-        height: 20px;
-    }
-`;
+import {
+    BurgerClose,
+    BurgerCloseContainer,
+    BurgerMenuContainer, BurgerNav, BurgerNavContainer,
+    BurgerOpen, BurgerSeparator, BurgerSeparatorContainer,
+    Container, InfoContainer, InfoPiece, StyledBurgerNavLink,
+    StyledHeader,
+    StyledIMG,
+    StyledLink,
+    StyledNav,
+    StyledNavLink, StyledP
+} from "./Header.styles";
 
 export default function Header(){
 
-    const { mobile } = useContext( Theme );
+    const mobile = useSelector((state: RootState) => state.mobile.mobile);
 
     const [attached, setAttached] = useState(false);
     const [hasMounted, setHasMounted] = useState(false);
@@ -201,8 +34,9 @@ export default function Header(){
     }
 
     useEffect(() => {
+        setHasMounted(true);
+        setAttached(window.scrollY > 50);
         window.addEventListener('scroll', handleScroll);
-        setHasMounted(true)
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -215,14 +49,14 @@ export default function Header(){
             backdropFilter: hasMounted && attached ? "blur(6px)" : "none",
             paddingTop: "0"
         }}
-        initial={{backgroundColor: "#00000000", backdropFilter: "none"}}
-        transition={{duration: 0.4}}>
+        initial={{ backgroundColor: "#00000000", backdropFilter: "none" }}
+        transition={{ duration: 0.4 }}>
         <motion.div animate={ !mobile ? { paddingTop: hasMounted && attached ? "2rem" : "4rem" } : {}}
-                    initial={{paddingTop: !mobile ? "4rem" : "0"}}
-                    transition={{duration: 0.4}}>
+                    initial={{ paddingTop: !mobile ? "4rem" : "0" }}
+                    transition={{ duration: 0.4 }}>
             <StyledHeader>
                 <StyledLink to={"/"}>
-                    <StyledIMG to={"/"} src="./src/assets/Cyberia.svg" alt={"Cyberia"}/>
+                    <StyledIMG src="./src/shared/assets/Cyberia.svg" alt={"Cyberia"}/>
                 </StyledLink>
                 <StyledNav>
                     <Link to="/agency">
@@ -241,12 +75,12 @@ export default function Header(){
                         <StyledNavLink>Контакты</StyledNavLink>
                     </Link>
                 </StyledNav>
-                <BurgerOpen onClick={ handleBurger } src={"./src/assets/BurgerOpen.svg"}/>
+                <BurgerOpen onClick={ handleBurger } src={"./src/shared/assets/BurgerOpen.svg"}/>
                 <BurgerMenuContainer
                     animate={{left: burger ? "0" : "100%"}}
                     initial={{left: "100%"}}>
                     <BurgerCloseContainer>
-                        <BurgerClose onClick={ handleBurger } src={"./src/assets/BurgerClose.svg"}></BurgerClose>
+                        <BurgerClose onClick={ handleBurger } src={"./src/shared/assets/BurgerClose.svg"}></BurgerClose>
                     </BurgerCloseContainer>
                     <BurgerNavContainer>
                         <BurgerNav>

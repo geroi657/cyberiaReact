@@ -16,10 +16,10 @@ export default function Case( { item } : { item? : CaseItem } ){
         onClick={ () => item?.project_url === null ? open("") : open(item?.project_url)}>
         <StyledInnerCase>
             <StyledTitle>{item?.title}</StyledTitle>
-            <StyledInnerSVG src={"src/assets/Inner.svg"}/>
+            <StyledInnerSVG src={"src/shared/assets/Inner.svg"}/>
         </StyledInnerCase>
         <StyledTabletContainer>
-            <StyledInnerWhite src={"src/assets/InnerWhite.svg"}/>
+            <StyledInnerWhite src={"src/shared/assets/InnerWhite.svg"}/>
             <StyledTitle>{item?.title}</StyledTitle>
             <p>{item?.description}</p>
         </StyledTabletContainer>

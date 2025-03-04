@@ -1,5 +1,5 @@
-import Container from "../../../shared/ui/Container.js";
-import GenericH2 from "../../../shared/ui/GenericH2.js";
+import Container from "../../../shared/Container/ui/Container.js";
+import GenericH2 from "../../../shared/GenericH2/ui/GenericH2.js";
 import Case from "../../../entities/Case/ui/Case";
 
 import { CategoriesContainer, StyledCasesContainer, StyledCategory } from "./Cases.styles";

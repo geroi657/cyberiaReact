@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledH2 = styled.h2`
+export const StyledH2 = styled.h2`
     font-size: 3rem;
     font-weight: 600;
     padding-bottom: 4rem;
@@ -12,7 +12,3 @@ const StyledH2 = styled.h2`
         font-size: 1.25rem;
     }
 `;
-
-export default function GenericH2({ children }) {
-    return <StyledH2>{ children }</StyledH2>;
-}
